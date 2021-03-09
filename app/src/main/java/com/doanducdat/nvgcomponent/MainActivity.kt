@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,18 +20,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //controller = findNavController(R.id.nav_host_fragment) nếu dùng thẻ host là fragment thì 1 dòng này là đủ
 
-        // trường hợp dùng thẻ FragmentContainerView
         //nav_host_fragment chứa 3 fragment nav_graph
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         controller = navHostFragment.findNavController()
         //gắn nó vào bottomNvgView là xong -> ĐIỂU HƯỚNG
         btm_nvg_view.setupWithNavController(controller)
 
-
+        //backbutton will be hided nếu đó là top level destination -> set up 3 fragment là top-level-destination
+        val appBarConfiguration: AppBarConfiguration = AppBarConfiguration(setOf(R.id.firstFragment,R.id.secondFragment, R.id.thirdFragment))
         //---
-        toolbar_main.setupWithNavController(controller) // -> HIỆN TÊN FRAGMENT KHI CHUYỂN ĐẾN FRAGMENT ĐÓ
+        toolbar_main.setupWithNavController(controller, appBarConfiguration) // -> HIỆN TÊN FRAGMENT KHI CHUYỂN ĐẾN FRAGMENT ĐÓ
         setSupportActionBar(toolbar_main)// -> CLICKABLE TRÊN MENU BAR
     }
     //add menu

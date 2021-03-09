@@ -19,7 +19,17 @@ class SecondFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val controller = findNavController()
+        //nhận data từ bundle
+        val bundle: Bundle? = arguments
+        if (bundle != null) {
+            val user1: User = bundle.getSerializable("USER") as User
+            txtText.text = bundle.getString("DATA")
+            txtUser.text = user1.toString()
+        }
+
+
         btn_open_fragThird.setOnClickListener {
             controller.navigate(R.id.thirdFragment)
         }
