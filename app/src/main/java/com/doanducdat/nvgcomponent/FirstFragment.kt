@@ -24,16 +24,18 @@ class FirstFragment : Fragment() {
         val controller = findNavController()
 
         btn_open_fragTwo.setOnClickListener {
-
-            //pass data = bundle
             val user1:User = User(edtUserName.text.toString(), edtAge.text.toString())
+
+            /*//pass data = bundle
             val bundle:Bundle = bundleOf(
                 "DATA" to edtData.text.toString(),
                 "USER" to user1
             )
-            //pas data =
             //có thể gọi id của destination(thẻ fragment trong nvg_graph) hoăc id của action của destination đó
-            controller.navigate(R.id.secondFragment, bundle)
+            controller.navigate(R.id.secondFragment, bundle)*/
+
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(user1)
+            controller.navigate(action)
         }
 
         btn_open_fragThird.setOnClickListener {

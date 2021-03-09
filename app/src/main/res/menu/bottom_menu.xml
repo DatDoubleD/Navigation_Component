@@ -17,4 +17,10 @@
         android:icon="@drawable/ic_more"
         android:title="More"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/deepLinkFragment"
+        android:icon="@drawable/ic_link"
+        android:title="DeepLink"
+        app:showAsAction="ifRoom" />
 </menu>

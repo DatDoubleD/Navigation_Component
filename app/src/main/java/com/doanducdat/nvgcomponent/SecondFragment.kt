@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_second.*
 
 class SecondFragment : Fragment() {
@@ -21,14 +22,18 @@ class SecondFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val controller = findNavController()
-        //nhận data từ bundle
+       /* //nhận data từ bundle
         val bundle: Bundle? = arguments
         if (bundle != null) {
             val user1: User = bundle.getSerializable("USER") as User
             txtText.text = bundle.getString("DATA")
             txtUser.text = user1.toString()
-        }
+        }*/
 
+        //nhận data từ SafeArgs
+        val args: SecondFragmentArgs by navArgs()
+        val user1: User = args.user
+        txtUser.text = user1.toString()
 
         btn_open_fragThird.setOnClickListener {
             controller.navigate(R.id.thirdFragment)
